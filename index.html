@@ -77,25 +77,25 @@
 </head>
 <body>
 
-  <h1>Nasze Wspomnienia Weselne</h1>
+  <h1>Our Wedding Memories</h1>
   
   <p>
-    Dziękujemy, że jesteście z nami w tym wyjątkowym dniu. Możecie podzielić się swoimi zdjęciami albo obejrzeć piękne chwile uchwycone przez innych.
+    Thank you for being with us during our special day. You can share your pictures or films here, or see the beautiful moments captured by others.
   </p>
 
-  <a href="#" onclick="document.getElementById('fileInput').click();" class="button">Prześlij zdjęcia lub filmy</a>
-  <a href="gallery.html" class="button">Zobacz całą galerię</a>
+  <a href="#" onclick="document.getElementById('fileInput').click();" class="button">Upload pictures/ videos</a>
+  <a href="gallery.html" class="button">View full gallery</a>
 
   <input type="file" id="fileInput" accept="image/*,video/*" multiple style="display:none" onchange="uploadFiles()" />
 
   <!-- Loading screen -->
   <div id="loadingScreen">
-    <p>Przesyłanie... <span id="progressPercent">0%</span></p>
+    <p>Uploading... <span id="progressPercent">0%</span></p>
     <progress id="uploadProgress" value="0" max="100"></progress>
   </div>
 
   <footer>
-    Po załadowaniu plików pojawi się potwierdzenie ich przesłania. Dziękujemy za wspólne wspomnienia!
+    After the upload you will see a notification of success. Thank you for the memories!
   </footer>
 
   <script>
@@ -132,7 +132,7 @@
           }),
         });
 
-        if (!response.ok) throw new Error('Nie udało się wygenerować URL do przesłania.');
+        if (!response.ok) throw new Error('Failed to generate an upload URL.');
 
         const { signedUrl, publicUrl } = await response.json();
 
@@ -167,7 +167,7 @@
             }
           };
 
-          xhr.onerror = () => reject(new Error('Błąd sieci podczas przesyłania.'));
+          xhr.onerror = () => reject(new Error('Network failure during upload.'));
           xhr.send(file);
         });
 
@@ -176,7 +176,7 @@
 
       loadingScreen.style.display = 'none';
       input.value = '';
-      alert('Przesłane pliki:\n' + uploadedUrls.join('\n'));
+      alert('Uploaded files:\n' + uploadedUrls.join('\n'));
 
       progressBar.value = 0;
       progressText.textContent = '0%';
@@ -184,14 +184,14 @@
     } catch (err) {
       loadingScreen.style.display = 'none';
       console.error(err);
-      alert('Błąd podczas przesyłania: ' + err.message);
+      alert('Failed during upload: ' + err.message);
     }
   }
 
   // Optional: warn before leaving if uploading
   window.onbeforeunload = function () {
     if (document.getElementById('loadingScreen').style.display === 'flex') {
-      return 'Trwa przesyłanie plików. Czy na pewno chcesz opuścić stronę?';
+      return 'File upload pending. Are you sure you want to exit the site?';
     }
   };
   </script>
