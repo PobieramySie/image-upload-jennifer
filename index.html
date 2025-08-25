@@ -132,7 +132,7 @@
           }),
         });
 
-        if (!response.ok) throw new Error('Failed to generate an upload URL.');
+        if (!response.ok) throw new Error('Het genereren van een upload-URL is mislukt.');
 
         const { signedUrl, publicUrl } = await response.json();
 
@@ -163,11 +163,11 @@
             if (xhr.status === 200 || xhr.status === 201) {
               resolve();
             } else {
-              reject(new Error(`Upload failed with status ${xhr.status}`));
+              reject(new Error(`Upload mislukt met status ${xhr.status}`));
             }
           };
 
-          xhr.onerror = () => reject(new Error('Network failure during upload.'));
+          xhr.onerror = () => reject(new Error('Netwerkfout tijdens uploaden.'));
           xhr.send(file);
         });
 
@@ -176,7 +176,7 @@
 
       loadingScreen.style.display = 'none';
       input.value = '';
-      alert('Uploaded files:\n' + uploadedUrls.join('\n'));
+      alert('Geüploade bestanden:\n' + uploadedUrls.join('\n'));
 
       progressBar.value = 0;
       progressText.textContent = '0%';
@@ -184,14 +184,14 @@
     } catch (err) {
       loadingScreen.style.display = 'none';
       console.error(err);
-      alert('Failed during upload: ' + err.message);
+      alert('Mislukt tijdens het uploaden: ' + err.message);
     }
   }
 
   // Optional: warn before leaving if uploading
   window.onbeforeunload = function () {
     if (document.getElementById('loadingScreen').style.display === 'flex') {
-      return 'File upload pending. Are you sure you want to exit the site?';
+      return 'Bestand upload in behandeling. Weet je zeker dat je de site wilt verlaten?';
     }
   };
   </script>
