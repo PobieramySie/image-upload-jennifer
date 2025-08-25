@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wedding Gallery</title>
+  <title>Bruiloftsgalerij</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato&family=Playfair+Display&display=swap" rel="stylesheet">
   <style>
     body {
@@ -159,12 +159,12 @@
 </head>
 <body>
 
-  <h1>Wedding Gallery</h1>
+  <h1>Bruiloftsgalerij</h1>
   <div id="gallery"></div>
 
-  <button id="loadMoreBtn" onclick="loadMoreImages()">Load more</button>
+  <button id="loadMoreBtn" onclick="loadMoreImages()">Meer laden</button>
 
-  <a href="index.html" class="button">← Back</a>
+  <a href="index.html" class="button">← Terug</a>
 
   <!-- Lightbox overlay -->
   <div id="lightboxOverlay" onclick="closeLightbox(event)">
@@ -173,8 +173,8 @@
       <video id="lightboxVideo" controls style="display: none;"></video>
     </div>
     <div id="lightboxControls">
-      <button class="lightboxBtn" onclick="prevImage(event)">◀ Previous</button>
-      <button class="lightboxBtn" onclick="nextImage(event)">Next ▶</button>
+      <button class="lightboxBtn" onclick="prevImage(event)">◀ Vorige</button>
+      <button class="lightboxBtn" onclick="nextImage(event)">Volgende ▶</button>
     </div>
   </div>
 
@@ -193,14 +193,14 @@
   async function fetchAllImages() {
     try {
       const res = await fetch(`${API_URL}/images`);
-      if (!res.ok) throw new Error('Failed to load more pictures. Please try again later.');
+      if (!res.ok) throw new Error('Het laden van meer foto’s is mislukt. Probeer het later opnieuw.');
       allUrls = await res.json();
       currentIndex = 0;
       document.getElementById('gallery').innerHTML = '';
       displayImages();
     } catch (err) {
       console.error(err);
-      alert('Failed to load the gallery. Please try again later.');
+      alert('Het laden van de galerij is mislukt. Probeer het later opnieuw.');
     }
   }
 
