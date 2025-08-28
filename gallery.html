@@ -266,6 +266,9 @@
       lightboxVideo.style.display = 'none';
       lightboxVideo.src = '';
       lightboxImg.style.display = 'block';
+      lightboxImg.onerror = () => {
+        lightboxImg.src = 'placeholder.jpg';
+      };
       lightboxImg.src = url;
     }
 
@@ -326,6 +329,9 @@
       lightboxVideo.style.display = 'none';
       lightboxVideo.src = '';
       lightboxImg.style.display = 'block';
+      lightboxImg.onerror = () => {
+        lightboxImg.src = 'placeholder.jpg';
+      };
       lightboxImg.src = url;
     }
   }
